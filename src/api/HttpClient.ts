@@ -3,7 +3,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse 
 
 // INTIALIZATION
 const createAxiosInstance = (): AxiosInstance => {
-  const instance = axios.create({ baseURL: 'http://localhost:5051' })
+  const instance = axios.create({ baseURL: import.meta.env.VITE_BASE_API_URL || "http://localhost:5051" })
   instance.interceptors.response.use(
     (response: any) => {
       return response

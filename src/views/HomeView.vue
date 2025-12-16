@@ -4,7 +4,7 @@ import Summary from '@/components/Cart/Summary.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 
 // dumy
-const items = reactive([
+let items = reactive([
   {
     id: "asdjiqw129asd",
     image_url: "https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto/1cbcc3f2-2ea4-4a9c-a1f0-74c661d9f3c9/NIKE+SHOX+RIDE+2.png",
@@ -67,7 +67,7 @@ watch(items, (newProduct) => {
 </script>
 
 <template>
-  <section class="container mx-auto grid grid-cols-6 w-full pt-5 gap-10 px-5">
+  <section class="container mx-auto grid grid-cols-6 w-full pt-5 gap-10 px-5 pb-5">
     <ProductList v-model="items" @increment="increment" @decrement="decrement" />
     <Summary :items="items" :total="total" />
   </section>
