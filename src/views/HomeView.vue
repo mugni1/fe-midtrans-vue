@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Article from "../components/article/Article.vue";
+import Carousel from "../components/carousel/Carousel.vue";
 
 const games = [
   {
@@ -31,8 +32,11 @@ const games = [
 </script>
 
 <template>
+  <!-- CAROUSEL  -->
+  <Carousel />
+
   <!-- GRID GAME -->
-  <section class="pt-24 lg:pt-34 mx-auto container px-4">
+  <section class="py-10 mx-auto container px-4">
     <div class="grid grid-cols-3 lg:grid-cols-6 gap-5">
       <div v-for="game in games" :key="game.name" class="card-game">
         <img :src="game.img_url" class="w-full aspect-square object-cover" alt="" />
