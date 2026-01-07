@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import ChangeToggleMode from '../mode/ChangeToggleMode.vue'
   import ToggleBurger from './ToggleBurger.vue'
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
   import ToggleSearch from './ToggleSearch.vue'
   import NavbarSearchPhone from './NavbarSearchPhone.vue'
@@ -13,19 +13,30 @@
   // state
   const isOpen = ref(false)
   const isSearch = ref(false)
+  const isOpenMode = ref(false)
 
   // methods
   const handleChangeIsOpen = (value: boolean) => {
     if (value) {
       isSearch.value = false
+      isOpenMode.value = false
     }
     isOpen.value = value
   }
   const handleChangeIsSearch = (value: boolean) => {
     if (value) {
       isOpen.value = false
+      isOpenMode.value = false
     }
     isSearch.value = value
+  }
+  const handleChangeIsOpenMode = (value: boolean) => {
+    console.log(value)
+    if (value) {
+      isSearch.value = false
+      isOpen.value = false
+    }
+    isOpenMode.value = value
   }
 </script>
 
@@ -36,7 +47,10 @@
         <img :src="data.brand_image_url" alt="brand" class="h-10" />
         <NavbarSearchLarge />
         <div class="space-x-2 relative flex items-center overflow-hidden">
-          <ChangeToggleMode />
+          <ChangeToggleMode
+            v-model="isOpenMode"
+            @change-is-open-mode="handleChangeIsOpenMode"
+          />
           <ToggleSearch
             class="lg:hidden"
             v-model="isSearch"
