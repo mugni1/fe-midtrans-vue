@@ -23,28 +23,28 @@
               <img
                 class="size-6"
                 src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Ff6a1857c-6ced-41ab-99fb-2340b2dbe09c.webp&w=32&q=75"
-                alt=""
+                alt="facebook"
               />
             </a>
             <a v-if="data.email_url" :href="data.email_url" target="_blank">
               <img
                 class="size-6"
                 src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F8f4f6f16-4763-4733-a595-c37c9aae94f1.webp&w=32&q=75"
-                alt=""
+                alt="email"
               />
             </a>
             <a v-if="data.instagram_url" :href="data.instagram_url" target="_blank">
               <img
                 class="size-6"
                 src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2F509573ad-c36d-467e-884a-72a984a95330.webp&w=32&q=75"
-                alt=""
+                alt="instagram"
               />
             </a>
             <a v-if="data.telegram_url" :href="data.telegram_url" target="_blank">
               <img
                 class="size-6"
                 src="https://www.bangjeff.com/_next/image?url=https%3A%2F%2Fcdn.bangjeff.com%2Ff233c760-d50d-40f6-a425-800559888c18.webp&w=32&q=75"
-                alt=""
+                alt="telegram"
               />
             </a>
           </div>
