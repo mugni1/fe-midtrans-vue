@@ -1,10 +1,13 @@
 <script setup lang="ts">
   import { motion } from 'motion-v'
   import { Button } from '../ui/button'
-  import { CalendarClockIcon, LogIn, Scale, Search, ShoppingBag } from 'lucide-vue-next'
+  import { LogIn } from 'lucide-vue-next'
   import { Separator } from '../ui/separator'
+  import { data } from './data'
+  import { useRouter } from 'vue-router'
 
   const isOpen = defineModel<boolean>()
+  const router = useRouter()
 </script>
 
 <template>
@@ -21,11 +24,18 @@
       :animate="{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -100 }"
       :transition="{ duration: 0.2 }"
     >
-      <Button variant="link" class="w-full"><ShoppingBag /> Top Up</Button>
-      <Button variant="ghost" class="w-full"><CalendarClockIcon /> Transaction </Button>
-      <Button variant="ghost" class="w-full"><Scale /> Calculator </Button>
+      <Button
+        v-for="link in data.links"
+        class="w-full"
+        :variant="$route.path == link.href ? 'link' : 'default_link'"
+        @click="router.push(link.href)"
+      >
+        <component :is="link.icon" /> {{ link.name }}
+      </Button>
       <Separator />
-      <Button variant="primary_outline" class="w-full"><LogIn /> Login </Button>
+      <Button variant="primary_outline" class="w-full" @click="router.push('/login')">
+        <LogIn /> Login
+      </Button>
     </motion.div>
   </motion.section>
 </template>

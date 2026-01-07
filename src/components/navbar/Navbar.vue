@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { CalendarClockIcon, LogIn, Scale, Search, ShoppingBag } from 'lucide-vue-next'
-  import { InputGroup, InputGroupAddon, InputGroupInput } from '../ui/input-group'
+  import { CalendarClockIcon, LogIn, Scale, ShoppingBag } from 'lucide-vue-next'
   import { Button } from '../ui/button'
   import ChangeToggleMode from '../mode/ChangeToggleMode.vue'
   import BurgerToggle from './BurgerToggle.vue'
@@ -8,6 +7,10 @@
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
   import SearchToggle from './SearchToggle.vue'
   import NavbarSearchPhone from './NavbarSearchPhone.vue'
+  import { Separator } from '../ui/separator'
+  import { data } from './data'
+  import NavbarSearchLarge from './NavbarSearchLarge.vue'
+  import NavbarMenuLarge from './NavbarMenuLarge.vue'
 
   // state
   const isOpen = ref(false)
@@ -32,17 +35,8 @@
   <header class="w-full fixed backdrop-blur-sm bg-popover/70 border-b z-50">
     <nav class="container mx-auto">
       <div class="flex justify-between items-center gap-4 py-4 px-4">
-        <!-- brand  -->
-        <img src="/anu.gif" alt="brand.logo" class="h-10" />
-
-        <!-- show on lg -->
-        <InputGroup class="hidden lg:flex">
-          <InputGroupInput class="rounded-full" placeholder="Search..." />
-          <InputGroupAddon>
-            <Search />
-          </InputGroupAddon>
-        </InputGroup>
-
+        <img :src="data.brand_image_url" alt="brand" class="h-10" />
+        <NavbarSearchLarge />
         <div class="space-x-2 relative flex items-center overflow-hidden">
           <ChangeToggleMode />
           <SearchToggle
@@ -57,21 +51,9 @@
           />
         </div>
       </div>
-
-      <!-- show on lg -->
-      <div class="hidden lg:flex items-center justify-between w-full px-2">
-        <div>
-          <Button variant="link" class="w-fit"> <ShoppingBag /> Top Up </Button>
-          <Button variant="ghost" class="w-fit">
-            <CalendarClockIcon /> Transaction
-          </Button>
-          <Button variant="ghost" class="w-fit"> <Scale /> Calculator </Button>
-        </div>
-        <div>
-          <Button variant="link" size="sm" class="w-fit"> <LogIn /> Login </Button>
-        </div>
-      </div>
     </nav>
+    <Separator class="hidden lg:block" />
+    <NavbarMenuLarge />
   </header>
 
   <NavbarMenuPhone v-model="isOpen" />
