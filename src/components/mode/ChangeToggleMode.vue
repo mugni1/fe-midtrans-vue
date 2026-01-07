@@ -16,15 +16,15 @@
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="outline" size="icon">
-        <Moon v-show="mode == 'light'" />
-        <Sun v-show="mode == 'dark'" />
+        <Moon v-show="mode == 'dark'" />
+        <Sun v-show="mode == 'light'" />
         <Monitor v-show="mode == 'auto'" />
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
-      <DropdownMenuItem @click="mode = 'light'">Light</DropdownMenuItem>
-      <DropdownMenuItem @click="mode = 'dark'">Dark</DropdownMenuItem>
-      <DropdownMenuItem @click="mode = 'auto'">System</DropdownMenuItem>
+      <DropdownMenuItem @click="mode = 'light'"><Sun /> Light</DropdownMenuItem>
+      <DropdownMenuItem @click="mode = 'dark'"><Moon /> Dark</DropdownMenuItem>
+      <DropdownMenuItem @click="mode = 'auto'"><Monitor /> System</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
