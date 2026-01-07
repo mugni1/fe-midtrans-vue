@@ -16,12 +16,13 @@
 </script>
 
 <template>
-  <section class="py-5 mx-auto container px-4">
+  <section class="pt-5 mx-auto container px-4">
     <div class="w-full lg:w-6/12 flex flex-col gap-1">
       <b class="title"> <Newspaper class="size-5" /> NEW ARTICLE & NEWS GAME </b>
       <p class="description">
-        Dapatkan informasi terbaru seputar dunia game! Temukan panduan lengkap untuk meningkatkan
-        pengalaman bermain, serta berita terkini mengenai promo, update top-up, dan komunitas gamer.
+        Dapatkan informasi terbaru seputar dunia game! Temukan panduan lengkap untuk
+        meningkatkan pengalaman bermain, serta berita terkini mengenai promo, update
+        top-up, dan komunitas gamer.
       </p>
     </div>
 
@@ -51,7 +52,9 @@
             <Separator />
             <div class="flex flex-col gap-1 pb-4">
               <p class="text-xs lg:text-sm font-medium text-start">Redaksi</p>
-              <p class="text-xs lg:text-sm font-normal text-start line-clamp-2 text-primary">
+              <p
+                class="text-xs lg:text-sm font-normal text-start line-clamp-2 text-primary"
+              >
                 Cara Mendapatkan Akun FF Sultan Gratis yang Aman (Metode Legal & Giveaway)
               </p>
             </div>
