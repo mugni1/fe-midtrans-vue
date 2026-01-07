@@ -6,13 +6,24 @@
   import BurgerToggle from './BurgerToggle.vue'
   import { ref } from 'vue'
   import NavbarMenuPhone from './NavbarMenuPhone.vue'
+  import SearchToggle from './SearchToggle.vue'
 
   // state
   const isOpen = ref(false)
+  const isSearch = ref(false)
 
   // methods
   const handleChangeIsOpen = (value: boolean) => {
+    if (value) {
+      isSearch.value = false
+    }
     isOpen.value = value
+  }
+  const handleChangeIsSearch = (value: boolean) => {
+    if (value) {
+      isOpen.value = false
+    }
+    isSearch.value = value
   }
 </script>
 
@@ -31,9 +42,18 @@
           </InputGroupAddon>
         </InputGroup>
 
-        <div class="space-x-2 flex items-center overflow-hidden">
+        <div class="space-x-2 relative flex items-center overflow-hidden">
           <ChangeToggleMode />
-          <BurgerToggle class="lg:hidden" v-model="isOpen" @change-is-open="handleChangeIsOpen" />
+          <SearchToggle
+            class="lg:hidden"
+            v-model="isSearch"
+            @change-is-search="handleChangeIsSearch"
+          />
+          <BurgerToggle
+            class="lg:hidden"
+            v-model="isOpen"
+            @change-is-open="handleChangeIsOpen"
+          />
         </div>
       </div>
 
@@ -41,7 +61,9 @@
       <div class="hidden lg:flex items-center justify-between w-full px-2">
         <div>
           <Button variant="link" class="w-fit"> <ShoppingBag /> Top Up </Button>
-          <Button variant="ghost" class="w-fit"> <CalendarClockIcon /> Transaction </Button>
+          <Button variant="ghost" class="w-fit">
+            <CalendarClockIcon /> Transaction
+          </Button>
           <Button variant="ghost" class="w-fit"> <Scale /> Calculator </Button>
         </div>
         <div>
