@@ -9,7 +9,7 @@
 </script>
 
 <template>
-  <section class="pt-5 mx-auto container px-4">
+  <section class="container-articles">
     <div class="w-full lg:w-6/12 flex flex-col gap-1">
       <b class="title"> <Newspaper class="size-5" /> {{ data.title }} </b>
       <p class="description">{{ data.description }}</p>
@@ -30,7 +30,7 @@
       <SwiperSlide v-for="(article, i) in data.articles" :key="i" class="py-4">
         <div class="card-article group">
           <div
-            class="aspect-[12/18] transition-all duration-300 group-hover:scale-105 w-full mask mask-b-from-0% mask-b-to-70% bg-top"
+            class="aspect-12/18 transition-all duration-300 group-hover:scale-105 w-full mask mask-b-from-0% mask-b-to-70% bg-top"
             :style="{ backgroundImage: `url(${article.img_url})` }"
           ></div>
           <div class="card-article-content">
@@ -51,6 +51,10 @@
 
 <style scoped>
   @import '../../assets/main.css';
+
+  .container-articles {
+    @apply pt-5 mx-auto container px-4;
+  }
 
   .title {
     @apply text-base font-medium flex gap-2 items-center;
