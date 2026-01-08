@@ -5,7 +5,7 @@
 
 <template>
   <section
-    class="min-h-svh bg-primary/40 flex justify-center items-center relative overflow-hidden"
+    class="min-h-svh bg-primary/70 flex justify-center items-center relative overflow-hidden"
   >
     <svg
       width="1024"
