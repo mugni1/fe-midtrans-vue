@@ -3,6 +3,7 @@
   import { computed } from 'vue'
   import Navbar from './components/navbar/Navbar.vue'
   import Footer from './components/footer/Footer.vue'
+  import { Toaster } from './components/ui/sonner'
 
   // state
   const route = useRoute()
@@ -16,4 +17,5 @@
   <Navbar v-if="showLayout" />
   <RouterView />
   <Footer v-if="showLayout" />
+  <Toaster position="bottom-right" :toast-options="{ class: 'font-sans' }" />
 </template>

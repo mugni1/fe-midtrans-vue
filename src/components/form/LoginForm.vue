@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import type { HTMLAttributes } from 'vue'
+  import type { PostLoginResponse } from '@/types/auth'
+  import IconGoogle from '@/icons/IconGoogle.vue'
   import { cn } from '@/lib/utils'
   import { Button } from '@/components/ui/button'
   import {
@@ -13,10 +15,16 @@
   import { useForm } from 'vee-validate'
   import { loginSchema } from '@/validation/login'
   import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
-  import IconGoogle from '@/icons/IconGoogle.vue'
-  import { RouterLink } from 'vue-router'
+  import { RouterLink, useRouter } from 'vue-router'
+  import { usePostLogin } from '@/hooks/usePostLogin'
+  import { Loader2Icon } from 'lucide-vue-next'
+  import { toast } from 'vue-sonner'
+  import { HttpStatusCode } from 'axios'
+  import Cookies from 'js-cookie'
 
-  // props
+  // state
+  const router = useRouter()
+  const { mutateAsync, isPending } = usePostLogin()
   const props = defineProps<{
     class?: HTMLAttributes['class']
   }>()
@@ -31,8 +39,20 @@
   })
 
   // methods
-  const handleSubmit = form.handleSubmit((values) => {
-    console.log(values)
+  const handleSubmit = form.handleSubmit(async (values) => {
+    try {
+      const results = await mutateAsync(values)
+      if (results.status != HttpStatusCode.Ok) {
+        toast.error(results.message, { action: { label: 'close' } })
+      } else {
+        toast.success(results.message, { action: { label: 'close' } })
+        Cookies.set('token', results.data?.token || '')
+        router.push('/')
+      }
+    } catch (err: unknown) {
+      const error = err as PostLoginResponse
+      toast.error(error.message, { action: { label: 'close' } })
+    }
   })
 </script>
 
@@ -74,7 +94,10 @@
             <FormMessage class="font-medium" />
           </FormItem>
         </FormField>
-        <Button type="submit" class="font-semibold w-full">LOGIN </Button>
+        <Button v-if="isPending" type="button" class="font-semibold w-full">
+          <Loader2Icon class="animate-spin" />
+        </Button>
+        <Button v-else type="submit" class="font-semibold w-full">LOGIN </Button>
       </form>
       <FieldSeparator>Or continue with</FieldSeparator>
       <Field>

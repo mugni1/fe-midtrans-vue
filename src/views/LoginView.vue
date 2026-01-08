@@ -26,7 +26,7 @@
       <img
         :src="data.right_image_url"
         alt="Image"
-        class="absolute inset-0 h-full w-full object-cover dark:brightness-[0.5]"
+        class="absolute inset-0 h-full w-full object-cover object-left dark:brightness-[0.5]"
       />
     </div>
   </section>

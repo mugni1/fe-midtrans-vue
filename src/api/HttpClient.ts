@@ -1,9 +1,27 @@
 import router from '@/router'
+import Cookies from "js-cookie"
 import axios, { type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from 'axios'
 
 // INTIALIZATION
 const createAxiosInstance = (): AxiosInstance => {
-  const instance = axios.create({ baseURL: import.meta.env.VITE_BASE_API_URL || "http://localhost:5051" })
+  const baseURL = import.meta.env.VITE_BASE_API_URL || 'http://localhost:5050'
+  const timeout = parseInt(import.meta.env.VITE_API_TIMEOUT || '10000')
+  const instance = axios.create({
+    baseURL,
+    timeout
+  })
+
+  instance.interceptors.request.use(
+    (config) => {
+      const token = Cookies.get('token')
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
+      return config
+    },
+    (error) => Promise.reject(error),
+  )
+
   instance.interceptors.response.use(
     (response: any) => {
       return response
