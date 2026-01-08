@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import Button from '@/components/Button.vue'
+  import { Button } from '@/components/ui/button'
   import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <section
-    class="min-h-svh bg-primary/70 flex justify-center items-center relative overflow-hidden"
+    class="min-h-svh bg-primary/40 flex justify-center items-center relative overflow-hidden"
   >
     <svg
       width="1024"
@@ -35,7 +35,7 @@
           Sorry, we couldn’t find the page you’re looking for.
         </b>
         <RouterLink to="/">
-          <Button class="w-fit mt-4 font-medium">Go back home</Button>
+          <Button variant="default" class="w-fit mt-4 font-medium">Go back home</Button>
         </RouterLink>
       </div>
     </div>
