@@ -1,11 +1,19 @@
 <script setup lang="ts">
-  import { RouterView } from 'vue-router'
+  import { RouterView, useRoute } from 'vue-router'
+  import { computed } from 'vue'
   import Navbar from './components/navbar/Navbar.vue'
   import Footer from './components/footer/Footer.vue'
+
+  // state
+  const route = useRoute()
+  const showLayout = computed(() => {
+    const hiddenRoutes = ['login', 'not_found']
+    return !hiddenRoutes.includes(String(route.name))
+  })
 </script>
 
 <template>
-  <Navbar v-if="$route.name != 'login'" />
+  <Navbar v-if="showLayout" />
   <RouterView />
-  <Footer v-if="$route.name != 'login'" />
+  <Footer v-if="showLayout" />
 </template>
