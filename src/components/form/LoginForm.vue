@@ -21,10 +21,12 @@
   import { toast } from 'vue-sonner'
   import { HttpStatusCode } from 'axios'
   import Cookies from 'js-cookie'
+  import { useAuthStore } from '@/stores/auth'
 
   // state
   const router = useRouter()
   const { mutateAsync, isPending } = usePostLogin()
+  const { setUser } = useAuthStore()
   const props = defineProps<{
     class?: HTMLAttributes['class']
   }>()
@@ -42,12 +44,13 @@
   const handleSubmit = form.handleSubmit(async (values) => {
     try {
       const results = await mutateAsync(values)
-      if (results.status != HttpStatusCode.Ok) {
-        toast.error(results.message, { action: { label: 'close' } })
-      } else {
-        toast.success(results.message, { action: { label: 'close' } })
+      if (results.status == HttpStatusCode.Ok) {
         Cookies.set('token', results.data?.token || '')
+        setUser(results.data?.user || undefined)
+        toast.success(results.message, { action: { label: 'close' } })
         router.push('/')
+      } else {
+        toast.error(results.message, { action: { label: 'close' } })
       }
     } catch (err: unknown) {
       const error = err as PostLoginResponse
