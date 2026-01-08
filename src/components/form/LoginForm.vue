@@ -103,8 +103,9 @@
       <Field>
         <Button variant="outline" type="button"> <IconGoogle />Login with Google </Button>
         <FieldDescription class="text-center">
-          Don't have an account?
-          <RouterLink to="/register">Sign up</RouterLink>
+          No have an account?
+          <RouterLink to="/register">Sign up</RouterLink> or
+          <RouterLink to="/">Back to home</RouterLink>
         </FieldDescription>
       </Field>
     </FieldGroup>

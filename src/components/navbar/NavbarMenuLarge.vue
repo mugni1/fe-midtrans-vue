@@ -22,7 +22,12 @@
         </Button>
       </div>
       <div>
-        <Button variant="link" size="sm" class="w-fit" @click="router.push('/login')">
+        <Button
+          variant="default_link"
+          size="sm"
+          class="w-fit"
+          @click="router.push('/login')"
+        >
           <LogIn /> Login
         </Button>
       </div>

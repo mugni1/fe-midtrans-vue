@@ -9,11 +9,6 @@
   <section class="grid min-h-svh lg:grid-cols-5">
     <!-- form  -->
     <div class="flex flex-col gap-4 p-6 md:p-10 lg:col-span-2">
-      <div class="flex justify-center md:justify-start">
-        <RouterLink to="/">
-          <Button variant="outline" size="icon"><X /></Button>
-        </RouterLink>
-      </div>
       <div class="flex flex-1 items-center justify-center">
         <div class="w-full max-w-xs">
           <LoginForm />
