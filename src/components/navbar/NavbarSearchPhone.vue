@@ -49,10 +49,10 @@
   @import '../../assets/main.css';
 
   .container-open {
-    @apply fixed inset-0 z-30 px-4 lg:hidden backdrop-blur-sm transition-all duration-200;
+    @apply fixed inset-0 z-30 px-4 lg:hidden backdrop-blur-sm transition-all duration-300;
   }
 
   .container-close {
-    @apply invisible fixed inset-0 z-30 px-4 lg:hidden transition-all duration-200;
+    @apply invisible fixed inset-0 z-30 px-4 lg:hidden transition-all duration-300;
   }
 </style>
