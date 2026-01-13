@@ -57,7 +57,7 @@
   }
 
   .title {
-    @apply text-base font-medium flex gap-2 items-center;
+    @apply text-base font-semibold flex gap-2 items-center text-primary;
   }
 
   .description {

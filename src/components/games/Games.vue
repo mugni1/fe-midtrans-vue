@@ -90,7 +90,7 @@
       class="w-full flex items-center justify-center"
       v-if="!isPending && games.length != data?.meta?.total"
     >
-      <Button variant="outline" @click="nextGames"> Show Another Game </Button>
+      <Button variant="outline" @click="nextGames"> Show more..</Button>
     </div>
   </section>
 </template>
@@ -99,7 +99,7 @@
   @import '../../assets/main.css';
 
   .title {
-    @apply text-base font-medium flex gap-2 items-center mb-2;
+    @apply text-base font-semibold flex gap-2 items-center mb-3 text-primary;
   }
 
   .container-game {

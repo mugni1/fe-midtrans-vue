@@ -9,6 +9,7 @@
   import { data } from './data'
   import NavbarSearchLarge from './NavbarSearchLarge.vue'
   import NavbarMenuLarge from './NavbarMenuLarge.vue'
+  import { RouterLink } from 'vue-router'
 
   // state
   const isOpen = ref(false)
@@ -44,7 +45,9 @@
   <header class="w-full fixed backdrop-blur-sm bg-popover/70 border-b z-50">
     <nav class="container mx-auto">
       <div class="flex justify-between items-center gap-4 py-4 px-4">
-        <img :src="data.brand_image_url" alt="brand" class="h-10" />
+        <RouterLink to="/">
+          <img :src="data.brand_image_url" alt="brand" class="h-10" />
+        </RouterLink>
         <NavbarSearchLarge />
         <div class="space-x-2 relative flex items-center overflow-hidden">
           <ChangeToggleMode
