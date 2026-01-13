@@ -90,7 +90,7 @@
       class="w-full flex items-center justify-center"
       v-if="!isPending && games.length != data?.meta?.total"
     >
-      <Button variant="outline" @click="nextGames"> Show more..</Button>
+      <Button size="sm" variant="outline" @click="nextGames"> Show more...</Button>
     </div>
   </section>
 </template>
