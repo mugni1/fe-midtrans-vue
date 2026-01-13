@@ -59,6 +59,7 @@
             :title="item.title"
             :price="item.price"
             :image_url="item.image_url"
+            :key="item.id"
           />
         </div>
       </CardContainer>

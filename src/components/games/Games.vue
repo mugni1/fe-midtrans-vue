@@ -10,7 +10,7 @@
     <div class="container-game">
       <div v-for="(game, i) in data.games" :key="game.name" class="card-game">
         <RouterLink :to="`/games/${game.name}`">
-          <img class="card-game-image" :src="game.img_url" :alt="'image' + i" />
+          <img class="card-game-image" :src="game.img_url" :alt="'image' + i" loading="lazy" />
           <div class="px-2 lg:px-3 py-2">
             <b class="card-game-title">{{ game.name }}</b>
             <p class="card-game-description">{{ game.studio }}</p>

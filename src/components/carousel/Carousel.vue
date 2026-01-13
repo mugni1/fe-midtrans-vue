@@ -38,6 +38,7 @@
       <SwiperSlide v-for="(image, index) in data.images" :key="index">
         <img
           class="w-full aspect-[9/3.4] object-cover object-center"
+          loading="lazy"
           :src="image.url"
           :alt="'image' + index"
         />
