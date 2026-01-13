@@ -81,7 +81,7 @@
     <!-- skeleton  -->
     <div class="container-game" v-if="isPending">
       <div v-for="value in limit">
-        <Skeleton class="aspect-[10/12.5]" />
+        <Skeleton class="aspect-10/13" />
       </div>
     </div>
 
