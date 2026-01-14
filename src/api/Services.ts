@@ -8,7 +8,7 @@ import type { GetDetailGameResponse, GetGamesResponse } from '@/types/games.type
 
 // PAYMENT SERVICES
 export const postPaymentService = async (payload: PostPaymentPayload): Promise<AxiosResponse<PostPaymentResponse>> => {
-  return httpClient.post(ENDPOINT.PAYMENT, payload)
+  return httpClient.post(ENDPOINT.ORDER, payload)
 }
 
 // AUTH SERVICE

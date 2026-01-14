@@ -1,13 +1,14 @@
 <script setup lang="ts">
   import type { GetDetailGameCategoryItem } from '@/types/games.type'
   import { Button } from '@/components/ui/button'
-  import { LogIn, ShoppingBag } from 'lucide-vue-next'
+  import { LogIn, ShoppingBag, Loader2 } from 'lucide-vue-next'
   import { useRoute, useRouter } from 'vue-router'
   import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion'
   import Separator from '../ui/separator/Separator.vue'
 
   // state
   const props = defineProps<{
+    isPending: boolean
     disabled: boolean
     token: string | undefined
     title: string
@@ -65,7 +66,10 @@
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <Button v-if="token" class="w-full" :disabled="disabled" @click="handleCheckout">
+      <Button v-if="isPending" class="w-full" :disabled="disabled" @click="handleCheckout">
+        <Loader2 class="animate-spin" />
+      </Button>
+      <Button v-else-if="token" class="w-full" :disabled="disabled" @click="handleCheckout">
         <ShoppingBag /> Checkout now
       </Button>
       <Button v-if="!token" class="w-full" :disabled="false" @click="handleLogin">

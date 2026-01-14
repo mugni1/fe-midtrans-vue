@@ -1,4 +1,7 @@
+import type { HttpStatusCode } from "axios"
+
 export interface PostPaymentResponse {
+  status: HttpStatusCode
   message: string
   data: {
     token: string
@@ -10,13 +13,12 @@ export interface PostPaymentResponse {
 
 export interface Item {
   id: string
-  price: number
-  total_price: number
-  quantity: number
   name: string
   category: string
+  price: number
+  quantity: number
 }
 export interface PostPaymentPayload {
-  order_id: string
+  destination: string
   item_details: Item[]
 }

@@ -1,25 +1,14 @@
 import { postPaymentService } from '@/api/Services'
-import type { PostPaymentPayload, PostPaymentResponse } from '@/types/payment.type'
+import { handleErrorResponse } from '@/libs/response'
 import { useMutation } from '@tanstack/vue-query'
-import { AxiosError } from 'axios'
+import type { PostPaymentPayload, PostPaymentResponse } from '@/types/payment.type'
 
 const fetch = async (payload: PostPaymentPayload): Promise<PostPaymentResponse> => {
   try {
     const res = await postPaymentService(payload)
     return res.data
   } catch (error: unknown) {
-    let message = 'Terjadi kesalahan saat mengambil data payment method.';
-    if (error instanceof AxiosError) {
-      message = error.response?.data?.message || error.message;
-    } else if (error instanceof Error) {
-      message = error.message;
-    }
-    return {
-      message: message,
-      data: null,
-      meta: null,
-      errors: null
-    };
+    return handleErrorResponse(error)
   }
 }
 

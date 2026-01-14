@@ -6,4 +6,5 @@ export const ENDPOINT = {
   PAYMENT: `/payment`,
   LOGIN: `/auth/login`,
   GAME: `/game`,
+  ORDER: `/order`
 }
