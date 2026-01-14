@@ -1,26 +1,33 @@
 <script setup lang="ts">
   import { Separator } from '@/components/ui/separator'
-  import { onMounted, ref } from 'vue'
-  import { RouterLink, useRoute } from 'vue-router'
-  import { Headphones, LogInIcon, ShoppingBag } from 'lucide-vue-next'
-  import Cookies from 'js-cookie'
+  import { useRoute, useRouter } from 'vue-router'
+  import { Headphones, LogInIcon, ShoppingBag, Loader2 } from 'lucide-vue-next'
   import { data } from './data'
   import { Button } from '../ui/button'
+  import type { GetDetailGameCategoryItem } from '@/types/games.type'
 
-  // state
-  const isLogin = ref<boolean>(false)
+  // STATE
+  const props = defineProps<{
+    isPending: boolean
+    disabled: boolean
+    token: string | undefined
+    title: string
+    item: GetDetailGameCategoryItem | undefined
+  }>()
+  const emits = defineEmits<{
+    (e: 'onCheckout'): void
+  }>()
   const route = useRoute()
-  const gamesPath = btoa(route.path)
+  const router = useRouter()
 
-  // mounted
-  onMounted(() => {
-    const token = Cookies.get('token')
-    if (!token) {
-      isLogin.value = false
-    } else {
-      isLogin.value = true
-    }
-  })
+  // METHODS
+  const handleLogin = () => {
+    const path = btoa(route.path)
+    router.push(`/login?redirect=${path}`)
+  }
+  const handleCheckout = () => {
+    emits('onCheckout')
+  }
 </script>
 
 <template>
@@ -33,42 +40,38 @@
           <p class="font-normal">You can call customer service in here.</p>
         </div>
       </div>
-      <div class="card-item-summary flex flex-col border-dashed">
+      <div v-if="item" class="card-item-summary flex flex-col border-dashed">
         <div class="flex items-center gap-4 w-full">
-          <img
-            :src="data.image_profile_url"
-            alt="image"
-            class="w-14 rounded-sm aspect-square object-cover object-center"
-          />
+          <img :src="item.imageUrl" alt="image" class="w-14 rounded-sm aspect-square object-cover object-center" />
           <div class="flex flex-col text-sm">
-            <p class="title-summary">{{ data.game_title }}</p>
-            <p class="sub-title-summary">200 Diamond</p>
+            <p class="title-summary">{{ title }}</p>
+            <p class="sub-title-summary">{{ item.name }}</p>
           </div>
         </div>
         <div class="flex flex-col text-sm w-full space-y-2">
           <div class="flex items-center justify-between">
             <p class="font-medium">Price</p>
-            <p class="font-normal">Rp 200000</p>
+            <p class="font-normal">Rp {{ item.price.toLocaleString('id-ID') }}</p>
           </div>
           <div class="flex items-center justify-between">
-            <p class="font-medium">Item Count</p>
-            <p class="font-normal">1</p>
-          </div>
-          <div class="flex items-center justify-between">
-            <p class="font-medium">Const</p>
-            <p class="font-normal">Rp 0</p>
+            <p class="font-medium">Count</p>
+            <p class="font-normal">{{ item.quantity }}</p>
           </div>
         </div>
         <Separator />
         <div class="flex items-center justify-between w-full">
-          <p class="font-bold text-lg">Gross Amount</p>
-          <p class="font-bold text-primary text-lg">Rp 200000</p>
+          <p class="font-semibold text-lg">Total Price</p>
+          <p class="font-semibold text-primary text-lg">Rp {{ item.price.toLocaleString('id-ID') }}</p>
         </div>
       </div>
-      <Button v-if="isLogin" class="w-full text-background font-bold"> <ShoppingBag /> Checkout Now </Button>
-      <RouterLink v-else :to="`/login?redirect=${gamesPath}`">
-        <Button class="w-full text-background font-bold"> <LogInIcon />Login To Continue</Button>
-      </RouterLink>
+      <div v-if="!item" class="card-item-summary flex flex-col border-dashed">
+        <span class="font-medium text-sm">No product items have been selected yet.</span>
+      </div>
+      <Button v-if="isPending" class="btn" :disabled="true"> <Loader2 class="animate-spin" /> </Button>
+      <Button v-else-if="token" class="btn" :disabled="disabled" @click="handleCheckout">
+        <ShoppingBag /> Checkout Now
+      </Button>
+      <Button v-if="!token" class="btn" @click="handleLogin"> <LogInIcon />Login To Continue </Button>
     </div>
   </div>
 </template>
@@ -90,5 +93,9 @@
 
   .sub-title-summary {
     @apply font-normal;
+  }
+
+  .btn {
+    @apply w-full text-background font-medium;
   }
 </style>

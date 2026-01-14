@@ -12,6 +12,7 @@
         <div class="w-full flex justify-center flex-col items-center space-y-2">
           <IconCheckFlower class="size-20 text-emerald-500" />
           <h1 class="text-emerald-500 font-extrabold text-4xl">Payment Success</h1>
+          <h1 class="text-red-500 font-extrabold text-2xl">Sorry, Belum jadi wey</h1>
         </div>
         <div>
           <button

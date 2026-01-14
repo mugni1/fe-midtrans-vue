@@ -10,13 +10,13 @@
   import { useGetDetailGame } from '@/hooks/useGetDetailGame'
   import { Skeleton } from '@/components/ui/skeleton'
   import type { GetDetailGameCategoryItem } from '@/types/games.type'
+  import type { PostPaymentResponse } from '@/types/payment.type'
   import Cookies from 'js-cookie'
   import Header from '@/components/detail-game/Header.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
   import CardItem from '@/components/detail-game/CardItem.vue'
   import Summary from '@/components/detail-game/Summary.vue'
   import SummarySmall from '@/components/detail-game/SummarySmall.vue'
-  import type { PostPaymentResponse } from '@/types/payment.type'
   import { HttpStatusCode } from 'axios'
   import { loadMidtrans } from '@/libs/midtrans'
 
@@ -80,7 +80,7 @@
       }
     } catch (err: unknown) {
       const error = err as PostPaymentResponse
-      toast.error(error.message, { action: { label: 'close' } })
+      toast.error('Please try again later', { action: { label: 'close' } })
     }
   }
 </script>
@@ -157,7 +157,14 @@
         </div>
       </CardContainer>
     </div>
-    <Summary />
+    <Summary
+      @on-checkout="handleCheckOut"
+      :is-pending="isPendingPayment"
+      :disabled="disabled"
+      :title="game?.data?.title || ''"
+      :item="itemActive"
+      :token="token"
+    />
   </section>
   <SummarySmall
     @on-checkout="handleCheckOut"
