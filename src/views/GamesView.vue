@@ -7,16 +7,19 @@
   import { Label } from '@/components/ui/label'
   import { useGetDetailGame } from '@/hooks/useGetDetailGame'
   import { Skeleton } from '@/components/ui/skeleton'
+  import Cookies from 'js-cookie'
   import Header from '@/components/detail-game/Header.vue'
   import CardContainer from '@/components/detail-game/CardContainer.vue'
   import CardItem from '@/components/detail-game/CardItem.vue'
   import Summary from '@/components/detail-game/Summary.vue'
+  import SummarySmall from '@/components/detail-game/SummarySmall.vue'
 
   // state
   const itemActive = ref<undefined | string>(undefined)
   const inputVoucher = ref<undefined | string>(undefined)
   const inputID = ref<undefined | string>(undefined)
   const server = ref<undefined | string>(undefined)
+  const token = Cookies.get('token')
   const route = useRoute()
   const { data, isPending } = useGetDetailGame(route.params.id as string)
 
@@ -68,7 +71,6 @@
           </div>
         </div>
       </CardContainer>
-
       <CardContainer
         title="Select Item"
         number="2"
@@ -103,6 +105,7 @@
     </div>
     <Summary />
   </section>
+  <SummarySmall :token="token" />
 </template>
 
 <style scoped>
