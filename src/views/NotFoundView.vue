@@ -4,9 +4,7 @@
 </script>
 
 <template>
-  <section
-    class="min-h-svh bg-primary/40 flex justify-center items-center relative overflow-hidden"
-  >
+  <section class="min-h-svh bg-primary/40 flex justify-center items-center relative overflow-hidden">
     <svg
       width="1024"
       height="244"
@@ -31,9 +29,7 @@
       <div class="flex flex-col">
         <b>404</b>
         <h3 class="text-xl lg:text-3xl">This page does not exist</h3>
-        <b class="text-sm lg:text-base font-normal">
-          Sorry, we couldn’t find the page you’re looking for.
-        </b>
+        <b class="text-sm lg:text-base font-normal"> Sorry, we couldn’t find the page you’re looking for. </b>
         <RouterLink to="/">
           <Button variant="default" class="w-fit mt-4 font-medium">Go back home</Button>
         </RouterLink>
